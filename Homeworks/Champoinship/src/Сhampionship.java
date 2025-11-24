@@ -4,8 +4,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class Сhampionship {
     public static void main(String[] args) throws Exception {
-        WorkWithPlayers workPlayers = new WorkWithPlayers("C:\\Учеба\\Java\\Champoinship\\src\\fakePlayers.csv");
-        List<Player> players = workPlayers.getPlayers();
+        WorkWithPlayers workPlayers = new WorkWithPlayers("src/fakePlayers.csv");
 
         // 1
         System.out.println("Игроков без агенства: " + workPlayers.getCountWithoutAgency() + "\n");
