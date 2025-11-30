@@ -8,7 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        // Создаем список игроков
         List<FootballPlayer> players = Arrays.asList(
             new FootballPlayer("Лионель Месси", 50),
             new FootballPlayer("Криштиану Роналду", 45),
