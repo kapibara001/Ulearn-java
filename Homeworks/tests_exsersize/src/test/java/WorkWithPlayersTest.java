@@ -88,6 +88,7 @@ public class WorkWithPlayersTest {
         assertEquals("Bayern", team);
     }
 
+    // Тест данных, которые будут использоваться в диаграмме
     @Test
     void testGetTop10TeamsByTransferValue() {
         Map<String, Integer> top10 = workWithPlayers.getTop10TeamsByTransferValue();

@@ -22,6 +22,7 @@ public class BarChart {
             "Стоимость",
             dataset);
 
+            
         barchart.setBackgroundPaint(Color.GRAY);
 
         JFrame frame = new JFrame("Задание 2");
