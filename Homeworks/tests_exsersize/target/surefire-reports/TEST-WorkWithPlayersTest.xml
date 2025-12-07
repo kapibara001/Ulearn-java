@@ -1,73 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="WorkWithPlayersTest" time="0.047" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="WorkWithPlayersTest" time="0.089" tests="10" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="25"/>
+    <property name="java.specification.version" value="21"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1251"/>
-    <property name="java.class.path" value="c:\Учеба\Java\Homeworks\tests_exsersize\target\test-classes;c:\Учеба\Java\Homeworks\tests_exsersize\target\classes;C:\Users\trost\.m2\repository\org\jfree\jfreechart\1.5.3\jfreechart-1.5.3.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\trost\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\trost\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.1\junit-jupiter-params-5.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite\1.8.1\junit-platform-suite-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.1\junit-platform-suite-api-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.8.1\junit-platform-suite-engine-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.1\junit-platform-suite-commons-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.1\junit-platform-launcher-1.8.1.jar;C:\Users\trost\.m2\repository\org\mockito\mockito-core\5.6.0\mockito-core-5.6.0.jar;C:\Users\trost\.m2\repository\net\bytebuddy\byte-buddy\1.14.8\byte-buddy-1.14.8.jar;C:\Users\trost\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.8\byte-buddy-agent-1.14.8.jar;C:\Users\trost\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\trost\.m2\repository\org\mockito\mockito-junit-jupiter\5.6.0\mockito-junit-jupiter-5.6.0.jar;"/>
-    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="java.class.path" value="F:\UrFU\Ulearn-java\Homeworks\tests_exsersize\target\test-classes;F:\UrFU\Ulearn-java\Homeworks\tests_exsersize\target\classes;C:\Users\Max\.m2\repository\org\jfree\jfreechart\1.5.3\jfreechart-1.5.3.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\Max\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\Max\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.1\junit-jupiter-params-5.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite\1.8.1\junit-platform-suite-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.1\junit-platform-suite-api-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.8.1\junit-platform-suite-engine-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.1\junit-platform-suite-commons-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.1\junit-platform-launcher-1.8.1.jar;C:\Users\Max\.m2\repository\org\mockito\mockito-core\5.6.0\mockito-core-5.6.0.jar;C:\Users\Max\.m2\repository\net\bytebuddy\byte-buddy\1.14.8\byte-buddy-1.14.8.jar;C:\Users\Max\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.8\byte-buddy-agent-1.14.8.jar;C:\Users\Max\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Max\.m2\repository\org\mockito\mockito-junit-jupiter\5.6.0\mockito-junit-jupiter-5.6.0.jar;"/>
+    <property name="java.vm.vendor" value="Microsoft"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
-    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="java.vendor.url" value="https://www.microsoft.com"/>
     <property name="user.timezone" value="Asia/Yekaterinburg"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="25"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="RU"/>
-    <property name="sun.boot.library.path" value="C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin"/>
-    <property name="sun.java.command" value="C:\Users\trost\AppData\Local\Temp\surefire17441491362801510249\surefirebooter-20251207194051670_3.jar C:\Users\trost\AppData\Local\Temp\surefire17441491362801510249 2025-12-07T19-40-51_596-jvmRun1 surefire-20251207194051670_1tmp surefire_0-20251207194051670_2tmp"/>
+    <property name="sun.boot.library.path" value="C:\Users\Max\.jdk\jdk-21.0.8\bin"/>
+    <property name="sun.java.command" value="C:\Users\Max\AppData\Local\Temp\surefire18276654102364116447\surefirebooter-20251207225718393_3.jar C:\Users\Max\AppData\Local\Temp\surefire18276654102364116447 2025-12-07T22-57-18_307-jvmRun1 surefire-20251207225718393_1tmp surefire_0-20251207225718393_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="c:\Учеба\Java\Homeworks\tests_exsersize\target\test-classes;c:\Учеба\Java\Homeworks\tests_exsersize\target\classes;C:\Users\trost\.m2\repository\org\jfree\jfreechart\1.5.3\jfreechart-1.5.3.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\trost\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\trost\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.1\junit-jupiter-params-5.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite\1.8.1\junit-platform-suite-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.1\junit-platform-suite-api-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.8.1\junit-platform-suite-engine-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.1\junit-platform-suite-commons-1.8.1.jar;C:\Users\trost\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.1\junit-platform-launcher-1.8.1.jar;C:\Users\trost\.m2\repository\org\mockito\mockito-core\5.6.0\mockito-core-5.6.0.jar;C:\Users\trost\.m2\repository\net\bytebuddy\byte-buddy\1.14.8\byte-buddy-1.14.8.jar;C:\Users\trost\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.8\byte-buddy-agent-1.14.8.jar;C:\Users\trost\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\trost\.m2\repository\org\mockito\mockito-junit-jupiter\5.6.0\mockito-junit-jupiter-5.6.0.jar;"/>
+    <property name="surefire.test.class.path" value="F:\UrFU\Ulearn-java\Homeworks\tests_exsersize\target\test-classes;F:\UrFU\Ulearn-java\Homeworks\tests_exsersize\target\classes;C:\Users\Max\.m2\repository\org\jfree\jfreechart\1.5.3\jfreechart-1.5.3.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\Max\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\Max\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.8.1\junit-jupiter-params-5.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite\1.8.1\junit-platform-suite-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-api\1.8.1\junit-platform-suite-api-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-engine\1.8.1\junit-platform-suite-engine-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-suite-commons\1.8.1\junit-platform-suite-commons-1.8.1.jar;C:\Users\Max\.m2\repository\org\junit\platform\junit-platform-launcher\1.8.1\junit-platform-launcher-1.8.1.jar;C:\Users\Max\.m2\repository\org\mockito\mockito-core\5.6.0\mockito-core-5.6.0.jar;C:\Users\Max\.m2\repository\net\bytebuddy\byte-buddy\1.14.8\byte-buddy-1.14.8.jar;C:\Users\Max\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.8\byte-buddy-agent-1.14.8.jar;C:\Users\Max\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\Max\.m2\repository\org\mockito\mockito-junit-jupiter\5.6.0\mockito-junit-jupiter-5.6.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\trost"/>
+    <property name="user.home" value="C:\Users\Max"/>
     <property name="user.language" value="ru"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2025-10-21"/>
-    <property name="java.home" value="C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest"/>
+    <property name="java.version.date" value="2025-07-15"/>
+    <property name="java.home" value="C:\Users\Max\.jdk\jdk-21.0.8"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="c:\Учеба\Java\Homeworks\tests_exsersize"/>
+    <property name="basedir" value="F:\UrFU\Ulearn-java\Homeworks\tests_exsersize"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\trost\AppData\Local\Temp\surefire17441491362801510249\surefirebooter-20251207194051670_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Max\AppData\Local\Temp\surefire18276654102364116447\surefirebooter-20251207225718393_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="25.0.1+8-LTS"/>
-    <property name="user.name" value="Макс"/>
-    <property name="stdout.encoding" value="UTF-8"/>
+    <property name="java.runtime.version" value="21.0.8+9-LTS"/>
+    <property name="user.name" value="Max"/>
+    <property name="stdout.encoding" value="Cp1251"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Temurin-25.0.1+8"/>
-    <property name="localRepository" value="C:\Users\trost\.m2\repository"/>
-    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
-    <property name="java.io.tmpdir" value="C:\Users\trost\AppData\Local\Temp\"/>
-    <property name="java.version" value="25.0.1"/>
-    <property name="user.dir" value="c:\Учеба\Java\Homeworks\tests_exsersize"/>
+    <property name="java.vendor.version" value="Microsoft-11933218"/>
+    <property name="localRepository" value="C:\Users\Max\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/microsoft/openjdk/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\Max\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.8"/>
+    <property name="user.dir" value="F:\UrFU\Ulearn-java\Homeworks\tests_exsersize"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1251"/>
-    <property name="java.library.path" value="C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\trost\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\trost\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\gradle\latest\bin;C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\maven\latest\bin;C:\Users\trost\AppData\Roaming\Code\User\globalStorage\pleiades.java-extension-pack-jdk\java\latest\bin;C:\Program Files\Python312\Scripts\;C:\Program Files\Python312\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\WINDOWS\system32\config\systemprofile\AppData\Local\Microsoft\WindowsApps;C:\windows\system32\HWAudioDriver\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files\dotnet\;C:\php8.4;C:\composer;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Microsoft SQL Server\170\DTS\Binn\;C:\Users\trost\AppData\Local\Microsoft\WindowsApps;C:\Microsoft VS Code\bin;C:\Users\trost\AppData\Roaming\npm;C:\Users\trost\AppData\Roaming\Composer\vendor\bin;C:\Users\trost\.dotnet\tools;c:\Users\trost\.vscode\extensions\vscjava.vscode-java-debug-0.58.3\bundled\scripts\noConfigScripts;."/>
+    <property name="java.library.path" value="C:\Users\Max\.jdk\jdk-21.0.8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\Max\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\Max\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Python314\Scripts\;C:\Python314\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Eclipse Adoptium\jdk-17.0.16.8-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Docker\Docker\resources\bin;C:\Users\Max\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\Max\AppData\Local\Programs\Python\Python313\;C:\Users\Max\AppData\Local\Microsoft\WindowsApps;F:\Microsoft VS Code\bin;C:\php\php.exe;C:\Users\Max\.dotnet\tools;C:\Users\Max\AppData\Roaming\npm;C:\Users\Max\AppData\Local\GitHubDesktop\bin;C:\Program Files\apache-maven-3.9.11\bin;c:\Users\Max\.vscode\extensions\vscjava.vscode-java-debug-0.58.3\bundled\scripts\noConfigScripts;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Eclipse Adoptium"/>
-    <property name="java.vm.version" value="25.0.1+8-LTS"/>
-    <property name="stdin.encoding" value="Cp1251"/>
+    <property name="stderr.encoding" value="Cp1251"/>
+    <property name="java.vendor" value="Microsoft"/>
+    <property name="java.vm.version" value="21.0.8+9-LTS"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="69.0"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testGetTop5TeamsByGoalsCount" classname="WorkWithPlayersTest" time="0.015"/>
-  <testcase name="testGetTeams" classname="WorkWithPlayersTest" time="0.001"/>
-  <testcase name="testGetAgencyWithMinPlayersCount" classname="WorkWithPlayersTest" time="0.003"/>
+  <testcase name="testGetTop5TeamsByGoalsCount" classname="WorkWithPlayersTest" time="0.045"/>
+  <testcase name="testGetTeams" classname="WorkWithPlayersTest" time="0.003"/>
+  <testcase name="testGetAgencyWithMinPlayersCount" classname="WorkWithPlayersTest" time="0.002"/>
   <testcase name="testGetTheRudestTeam" classname="WorkWithPlayersTest" time="0.002"/>
-  <testcase name="testGetTheExpensiveGermanPlayerPosition" classname="WorkWithPlayersTest" time="0.002"/>
-  <testcase name="testGetPlayersByPosition" classname="WorkWithPlayersTest" time="0.002"/>
-  <testcase name="testGetPlayers" classname="WorkWithPlayersTest" time="0.0"/>
-  <testcase name="testGetMaxDefenderGoalsCount" classname="WorkWithPlayersTest" time="0.002"/>
-  <testcase name="testGetCountWithoutAgency" classname="WorkWithPlayersTest" time="0.001"/>
-  <testcase name="testGetTop10TeamsByTransferValue" classname="WorkWithPlayersTest" time="0.001"/>
+  <testcase name="testGetTheExpensiveGermanPlayerPosition" classname="WorkWithPlayersTest" time="0.001"/>
+  <testcase name="testGetPlayersByPosition" classname="WorkWithPlayersTest" time="0.0"/>
+  <testcase name="testGetPlayers" classname="WorkWithPlayersTest" time="0.001"/>
+  <testcase name="testGetMaxDefenderGoalsCount" classname="WorkWithPlayersTest" time="0.001"/>
+  <testcase name="testGetCountWithoutAgency" classname="WorkWithPlayersTest" time="0.004"/>
+  <testcase name="testGetTop10TeamsByTransferValue" classname="WorkWithPlayersTest" time="0.002"/>
 </testsuite>

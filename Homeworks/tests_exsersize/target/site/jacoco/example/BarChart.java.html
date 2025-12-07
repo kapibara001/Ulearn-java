@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BarChart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests_exsersize</a> &gt; <a href="index.source.html" class="el_package">example</a> &gt; <span class="el_source">BarChart.java</span></div><h1>BarChart.java</h1><pre class="source lang-java linenums">package example;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.category.DefaultCategoryDataset;
+import javax.swing.*;
+import java.awt.*;
+
+<span class="nc" id="L10">public class BarChart {</span>
+    public static void showTop10TeamsChart(WorkWithPlayers wp) {
+<span class="nc" id="L12">        var top10 = wp.getTop10TeamsByTransferValue();</span>
+<span class="nc" id="L13">        DefaultCategoryDataset dataset = new DefaultCategoryDataset();</span>
+
+<span class="nc" id="L15">        top10.forEach((team, cost) -&gt; {</span>
+<span class="nc" id="L16">            dataset.addValue(cost / 1000, &quot;Суммарная стоимость&quot;, team);</span>
+<span class="nc" id="L17">        });</span>
+
+<span class="nc" id="L19">        JFreeChart barchart = ChartFactory.createBarChart(</span>
+            &quot;Топ 10 команд с наивысшей трансферной стоиомстью&quot;,
+            &quot;Команда&quot;,
+            &quot;Стоимость&quot;,
+            dataset);
+
+            
+<span class="nc" id="L26">        barchart.setBackgroundPaint(Color.GRAY);</span>
+
+<span class="nc" id="L28">        JFrame frame = new JFrame(&quot;Задание 2&quot;);</span>
+<span class="nc" id="L29">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L30">        frame.setSize(800, 600);</span>
+
+<span class="nc" id="L32">        ChartPanel chartpanel = new ChartPanel(barchart);</span>
+<span class="nc" id="L33">        chartpanel.setPreferredSize(new Dimension(800, 600));</span>
+<span class="nc" id="L34">        frame.setContentPane(chartpanel);</span>
+<span class="nc" id="L35">        frame.setVisible(true);</span>
+<span class="nc" id="L36">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

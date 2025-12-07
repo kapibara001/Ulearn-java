@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>WorkWithPlayers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests_exsersize</a> &gt; <a href="index.source.html" class="el_package">example</a> &gt; <span class="el_source">WorkWithPlayers.java</span></div><h1>WorkWithPlayers.java</h1><pre class="source lang-java linenums">package example;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+public class WorkWithPlayers implements IResolver {
+    private String filename;
+    private List&lt;String&gt; lines;
+
+<span class="fc" id="L18">    public WorkWithPlayers(String filename) {</span>
+<span class="fc" id="L19">        this.filename = filename;</span>
+        try {
+<span class="fc" id="L21">            this.lines = Files.readAllLines(Paths.get(filename));</span>
+<span class="nc" id="L22">        } catch (IOException e) {</span>
+<span class="nc" id="L23">            throw new RuntimeException(e);</span>
+<span class="fc" id="L24">        }</span>
+<span class="fc" id="L25">    }</span>
+
+    public List&lt;Player&gt; getPlayers() {
+        //Name[0];Team[1];City[2];Position[3];Nationality[4];Agency[5];Transfer cost[6];Participations[7];Goals[8];Assists[9];Yellow cards[10];Red cards[11]
+<span class="fc" id="L29">        List&lt;Player&gt; players = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">        Position pos = null;</span>
+
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        for (String line : lines) {</span>
+<span class="pc bpc" id="L33" title="1 of 4 branches missed.">            if (line.trim().isEmpty() || line.startsWith(&quot;Name;Team;&quot;)) {</span>
+<span class="fc" id="L34">                continue;</span>
+            }
+
+<span class="fc" id="L37">            String[] parts = line.split(&quot;;&quot;);</span>
+
+<span class="pc bpc" id="L39" title="2 of 5 branches missed.">            switch (parts[3].trim()) {</span>
+                case &quot;MIDFIELD&quot;:
+<span class="fc" id="L41">                    pos = Position.MIDFIELD;</span>
+<span class="fc" id="L42">                    break;</span>
+                case &quot;DEFENDER&quot;:
+<span class="fc" id="L44">                    pos = Position.DEFENDER;</span>
+<span class="fc" id="L45">                    break;</span>
+                case &quot;FORWARD&quot;:
+<span class="fc" id="L47">                    pos = Position.FORWARD;</span>
+<span class="fc" id="L48">                    break;</span>
+                case &quot;GOALKEEPER&quot;:
+<span class="nc" id="L50">                    pos = Position.GOALKEEPER;</span>
+                default:
+<span class="nc" id="L52">                    pos = Position.GOALKEEPER;</span>
+            }
+            
+<span class="fc" id="L55">            Player newPlayer = new Player(parts[0], parts[1], parts[2], pos, parts[4], parts[5],</span>
+<span class="fc" id="L56">                                            Integer.parseInt(parts[6]), Short.parseShort(parts[8]),</span>
+<span class="fc" id="L57">                                            Short.parseShort(parts[11]));</span>
+<span class="fc" id="L58">            players.add(newPlayer);</span>
+<span class="fc" id="L59">        }</span>
+
+<span class="fc" id="L61">        return players;</span>
+    }
+
+    public int getCountWithoutAgency() {
+<span class="fc" id="L65">        return (int) getPlayers().stream()</span>
+<span class="pc bpc" id="L66" title="1 of 4 branches missed.">            .filter(p -&gt; p.getAgency() == null || p.getAgency().trim().isEmpty())</span>
+<span class="fc" id="L67">            .count();</span>
+    }
+
+    public int getMaxDefenderGoalsCount() {
+<span class="fc" id="L71">        return (int) getPlayers().stream()</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">            .filter(p -&gt; p.getPosition() == Position.DEFENDER)</span>
+<span class="fc" id="L73">            .mapToInt(Player::getGoals)</span>
+<span class="fc" id="L74">            .max()</span>
+<span class="fc" id="L75">            .orElse(0);</span>
+    }
+
+    public String getTheExpensiveGermanPlayerPosition() {
+<span class="fc" id="L79">        return getPlayers().stream()</span>
+<span class="fc" id="L80">            .filter(p -&gt; &quot;Germany&quot;.equalsIgnoreCase(p.getNationality()))</span>
+<span class="fc" id="L81">            .max(Comparator.comparingInt(Player::getTransferCost))</span>
+<span class="pc bpc" id="L82" title="3 of 4 branches missed.">            .map(p -&gt; switch (p.getPosition()) {</span>
+<span class="fc" id="L83">                case DEFENDER   -&gt; &quot;Защитник&quot;;</span>
+<span class="nc" id="L84">                case MIDFIELD   -&gt; &quot;Полузащитник&quot;;</span>
+<span class="nc" id="L85">                case FORWARD    -&gt; &quot;Нападающий&quot;;</span>
+<span class="nc" id="L86">                case GOALKEEPER -&gt; &quot;Вратарь&quot;;</span>
+            })
+<span class="fc" id="L88">            .orElse(&quot;ERROR&quot;);</span>
+    }
+
+    public Map&lt;String, String&gt; getPlayersByPosition() {
+<span class="fc" id="L92">        return getPlayers().stream()</span>
+<span class="fc" id="L93">            .collect(Collectors.groupingBy(</span>
+<span class="pc bpc" id="L94" title="1 of 4 branches missed.">                p -&gt; switch (p.getPosition()) {</span>
+<span class="fc" id="L95">                    case DEFENDER   -&gt; &quot;Защитники&quot;;</span>
+<span class="fc" id="L96">                    case MIDFIELD   -&gt; &quot;Полузащитники&quot;;</span>
+<span class="fc" id="L97">                    case FORWARD    -&gt; &quot;Нападающие&quot;;</span>
+<span class="nc" id="L98">                    case GOALKEEPER -&gt; &quot;Вратари&quot;;</span>
+                },
+<span class="fc" id="L100">                Collectors.mapping(</span>
+                    Player::getName,
+<span class="fc" id="L102">                    Collectors.joining(&quot;, &quot;)</span>
+                )
+            ));
+    }
+
+    public Set&lt;String&gt; getTeams() {
+<span class="fc" id="L108">        return getPlayers().stream()</span>
+<span class="fc" id="L109">            .map(Player::getTeam)</span>
+<span class="fc" id="L110">            .collect(Collectors.toSet());</span>
+    }
+
+    public Map&lt;String, Integer&gt; getTop5TeamsByGoalsCount() {
+<span class="fc" id="L114">        return getPlayers().stream()</span>
+<span class="fc" id="L115">                .collect(Collectors.groupingBy(</span>
+                    Player::getTeam,
+<span class="fc" id="L117">                    Collectors.summingInt(Player::getGoals)</span>
+                ))
+<span class="fc" id="L119">                .entrySet().stream()</span>
+<span class="fc" id="L120">                .sorted(Map.Entry.&lt;String, Integer&gt;comparingByValue().reversed())</span>
+<span class="fc" id="L121">                .limit(5)</span>
+<span class="fc" id="L122">                .collect(Collectors.toMap(</span>
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+<span class="nc" id="L125">                    (e1, e2) -&gt; e1,</span>
+                    LinkedHashMap::new
+                ));
+    }
+
+    public String getAgencyWithMinPlayersCount() {
+<span class="fc" id="L131">        return getPlayers().stream()</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">            .filter(p -&gt; p.getAgency() != null &amp;&amp;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">                        !p.getAgency().trim().isEmpty() &amp;&amp;</span>
+<span class="pc bpc" id="L134" title="1 of 2 branches missed.">                        !&quot;No Agency&quot;.equalsIgnoreCase(p.getAgency().trim()))</span>
+<span class="fc" id="L135">            .collect(Collectors.groupingBy(</span>
+                Player::getAgency,
+<span class="fc" id="L137">                Collectors.counting()</span>
+            ))
+<span class="fc" id="L139">            .entrySet().stream()</span>
+<span class="fc" id="L140">            .min(Map.Entry.comparingByValue())</span>
+<span class="fc" id="L141">            .map(Map.Entry::getKey)</span>
+<span class="fc" id="L142">            .orElse(&quot;Нет агентств&quot;);</span>
+    }
+
+    public String getTheRudestTeam() {
+<span class="fc" id="L146">        return getPlayers().stream()</span>
+<span class="fc" id="L147">            .collect(Collectors.groupingBy(</span>
+                Player::getTeam,
+<span class="fc" id="L149">                Collectors.averagingInt(Player::getRedCards)</span>
+            ))
+<span class="fc" id="L151">            .entrySet().stream()</span>
+<span class="fc" id="L152">            .max(Map.Entry.comparingByValue())</span>
+<span class="fc" id="L153">            .map(Map.Entry::getKey)</span>
+<span class="fc" id="L154">            .orElse(&quot;other&quot;);</span>
+    }
+
+    public Map&lt;String, Integer&gt; getTop10TeamsByTransferValue() {
+<span class="fc" id="L158">        return getPlayers().stream()</span>
+<span class="fc" id="L159">                .collect(Collectors.groupingBy(</span>
+                    Player::getTeam,
+<span class="fc" id="L161">                    Collectors.summingInt(Player::getTransferCost)</span>
+                ))
+<span class="fc" id="L163">                .entrySet().stream()</span>
+<span class="fc" id="L164">                .sorted(Map.Entry.&lt;String, Integer&gt;comparingByValue().reversed())</span>
+<span class="fc" id="L165">                .limit(10)</span>
+<span class="fc" id="L166">                .collect(Collectors.toMap(</span>
+                    Map.Entry::getKey,
+                    Map.Entry::getValue,
+<span class="nc" id="L169">                    (e1, e2) -&gt; e1,</span>
+                    LinkedHashMap::new
+                ));
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

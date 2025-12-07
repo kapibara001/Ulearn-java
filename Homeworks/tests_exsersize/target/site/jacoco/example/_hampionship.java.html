@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Сhampionship.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tests_exsersize</a> &gt; <a href="index.source.html" class="el_package">example</a> &gt; <span class="el_source">Сhampionship.java</span></div><h1>Сhampionship.java</h1><pre class="source lang-java linenums">package example;
+
+<span class="nc" id="L3">public class Сhampionship {</span>
+    public static void main(String[] args) throws Exception {
+        // WorkWithPlayers workPlayers = new WorkWithPlayers(&quot;C:\\Учеба\\Java\\Homeworks\\tests_exsersize\\src\\main\\java\\example\\fakePlayers.csv&quot;);
+<span class="nc" id="L6">        WorkWithPlayers workPlayers = new WorkWithPlayers(&quot;src/main/java/example/fakePlayers.csv&quot;);</span>
+        // 1
+<span class="nc" id="L8">        System.out.println(&quot;Игроков без агенства: &quot; + workPlayers.getCountWithoutAgency() + &quot;\n&quot;);</span>
+
+        // 2
+<span class="nc" id="L11">        System.out.println(&quot;Максимальное количество голов, забитых защитником: &quot; + workPlayers.getMaxDefenderGoalsCount() + &quot;\n&quot;);</span>
+
+        // 3
+<span class="nc" id="L14">        System.out.println(&quot;Позиция самого дорогого немецкого игрока: &quot; + workPlayers.getTheExpensiveGermanPlayerPosition() + &quot;\n&quot;);</span>
+
+        // 4
+<span class="nc" id="L17">        System.out.println(&quot;Игроки по позициям на поле: &quot; + workPlayers.getPlayersByPosition() + &quot;\n&quot;);</span>
+
+        // 5
+<span class="nc" id="L20">        System.out.println(&quot;Все команды, участвующие в чемпионате: &quot;);</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        for (String team : workPlayers.getTeams()) {</span>
+<span class="nc" id="L22">            System.out.println(team);</span>
+<span class="nc" id="L23">        }</span>
+<span class="nc" id="L24">        System.out.println(&quot;&quot;);</span>
+
+        // 6
+<span class="nc" id="L27">        System.out.println(&quot;Топ 5 команд по голам: &quot; + workPlayers.getTop5TeamsByGoalsCount());</span>
+<span class="nc" id="L28">        System.out.println(&quot;&quot;);</span>
+
+        // 7
+<span class="nc" id="L31">        System.out.println(&quot;Агенство с наименьшей суммой игроков: &quot; + workPlayers.getAgencyWithMinPlayersCount());</span>
+<span class="nc" id="L32">        System.out.println(&quot;&quot;);</span>
+
+<span class="nc" id="L34">        System.out.println(&quot;Команда с наибольшим количеством красных карточек у игрока: &quot; + workPlayers.getTheRudestTeam()); </span>
+
+        // Задание 2
+<span class="nc" id="L37">        BarChart.showTop10TeamsChart(workPlayers);</span>
+<span class="nc" id="L38">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

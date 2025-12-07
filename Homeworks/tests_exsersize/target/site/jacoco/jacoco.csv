@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tests_exsersize,example,WorkWithPlayers,20,309,10,21,10,80,12,26,2,17
+tests_exsersize,example,Сhampionship,75,0,2,0,18,0,3,0,2,0
+tests_exsersize,example,BarChart,64,0,0,0,16,0,3,0,3,0
+tests_exsersize,example,Position,0,27,0,0,0,5,0,1,0,1
+tests_exsersize,example,Player,27,54,0,0,5,19,2,9,2,9

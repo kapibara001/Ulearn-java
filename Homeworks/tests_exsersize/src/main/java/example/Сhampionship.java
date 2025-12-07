@@ -2,8 +2,8 @@ package example;
 
 public class Сhampionship {
     public static void main(String[] args) throws Exception {
-        WorkWithPlayers workPlayers = new WorkWithPlayers("C:\\Учеба\\Java\\Homeworks\\tests_exsersize\\src\\main\\java\\example\\fakePlayers.csv");
-
+        // WorkWithPlayers workPlayers = new WorkWithPlayers("C:\\Учеба\\Java\\Homeworks\\tests_exsersize\\src\\main\\java\\example\\fakePlayers.csv");
+        WorkWithPlayers workPlayers = new WorkWithPlayers("src/main/java/example/fakePlayers.csv");
         // 1
         System.out.println("Игроков без агенства: " + workPlayers.getCountWithoutAgency() + "\n");
 

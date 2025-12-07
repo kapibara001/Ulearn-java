@@ -108,3 +108,5 @@ public class WorkWithPlayersTest {
         assertEquals(null, top10.get("Dortmund"));
     }
 }
+
+// Для тестов надо в терминал ввести mvn clean test jacoco:report
