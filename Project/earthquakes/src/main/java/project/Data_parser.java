@@ -16,15 +16,12 @@ public class Data_parser {
     }
 
     public CSVReader createCSVReader() throws IOException {
-        try (FileReader fileReader = new FileReader(this.path.toString())) {
-            return new CSVReader(fileReader);
-        } catch (IOException e) {
-            throw new IOException("Error creating CSVReader", e);
-        }
+        return new CSVReader(new FileReader(this.path.toString()));
     }
 
     public List<String[]> readAllData() throws IOException, CsvException {
-        CSVReader csvReader = createCSVReader();
-        return csvReader.readAll();
+        try (CSVReader csvReader = createCSVReader()) {
+            return csvReader.readAll();
+        }
     }
 }
