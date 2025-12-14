@@ -3,6 +3,7 @@ package project;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class Schedule {
     public void create_all_schedule() {
         Map<Integer, Integer> earthquakesPerYear = getEarthquakesPerYear();
         
-        System.out.println(earthquakesPerYear);
+        // System.out.println(earthquakesPerYear);
     }
     
     // Вывести в консоль среднюю магнитуду для города city (West Virginia)
@@ -39,7 +40,7 @@ public class Schedule {
     
     // Вывести название штата, в котором произошло самое глубокое землетрясение за year год
     public void create_schedule_deepest(int year) {
-        
+        System.out.println(theDeepestEarthquake(year));
     }
     
 
@@ -75,10 +76,25 @@ public class Schedule {
         return Double.parseDouble(formatted);
     }
 
+    public String theDeepestEarthquake(int year) {
+        String stateEarthquakest = data.stream()
+            .skip(1)
+            .filter(row -> Integer.parseInt(row[5].substring(0, 4)) == year)
+            .max(Comparator.comparingInt(row -> Integer.parseInt(row[1])))
+            .map(row -> row[4].toLowerCase())
+            .orElse("Нет данных за " + year + " год");
+
+        return stateEarthquakest;
+    }
+
     public static void main(String[] args) {
         Schedule sc = new Schedule();
         sc.create_all_schedule();
         
-        sc.create_schedule_city("Ohio");
+        // Средняя магнитуда для штата West Virginia
+        sc.create_schedule_city("West Virginia");
+
+        // Самое глубокое землетрясение в 2013 году
+        sc.create_schedule_deepest(2013);
     }
 }
