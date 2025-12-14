@@ -9,6 +9,16 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.swing.JFrame;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import com.opencsv.exceptions.CsvException;
 
 public class Schedule {
@@ -30,7 +40,32 @@ public class Schedule {
     public void create_all_schedule() {
         Map<Integer, Integer> earthquakesPerYear = getEarthquakesPerYear();
         
-        // System.out.println(earthquakesPerYear);
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        earthquakesPerYear.forEach((year, count) -> {
+            dataset.addValue(count, "Count earthquakes per year", year);
+        });
+
+        JFreeChart chart = ChartFactory.createBarChart("Earthquakes",
+            "year", 
+            "Count earthquakes", 
+            dataset);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+        CategoryAxis domainAxis = plot.getDomainAxis();
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+
+        // Увеличиваем отступы
+        domainAxis.setLowerMargin(0.02);
+        domainAxis.setUpperMargin(0.02);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        JFrame frame = new JFrame(); 
+        frame.setSize(800, 600);
+        frame.setContentPane(chartPanel);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
     
     // Вывести в консоль среднюю магнитуду для города city (West Virginia)
@@ -87,14 +122,4 @@ public class Schedule {
         return stateEarthquakest;
     }
 
-    public static void main(String[] args) {
-        Schedule sc = new Schedule();
-        sc.create_all_schedule();
-        
-        // Средняя магнитуда для штата West Virginia
-        sc.create_schedule_city("West Virginia");
-
-        // Самое глубокое землетрясение в 2013 году
-        sc.create_schedule_deepest(2013);
-    }
 }
