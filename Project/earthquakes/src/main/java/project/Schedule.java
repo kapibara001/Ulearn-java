@@ -1,12 +1,12 @@
 package project;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
@@ -38,7 +38,7 @@ public class Schedule {
     
     // надо среднее количество землетрясений по годам
     public void create_all_schedule() {
-        Map<Integer, Integer> earthquakesPerYear = getEarthquakesPerYear();
+        SortedMap<Integer, Integer> earthquakesPerYear = getEarthquakesPerYear();
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
@@ -53,9 +53,9 @@ public class Schedule {
 
         CategoryPlot plot = chart.getCategoryPlot();
         CategoryAxis domainAxis = plot.getDomainAxis();
-        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45);
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Поворот 45 градусов
 
-        // Увеличиваем отступы
+        // отступы
         domainAxis.setLowerMargin(0.02);
         domainAxis.setUpperMargin(0.02);
 
@@ -79,12 +79,12 @@ public class Schedule {
     }
     
 
-    public Map<Integer, Integer> getEarthquakesPerYear() {
+    public SortedMap<Integer, Integer> getEarthquakesPerYear() {
         return data.stream()
             .skip(1)
             .map(row -> row[5])
             .map(dateStr -> Integer.parseInt(dateStr.substring(0, 4)))
-            .collect(Collectors.groupingBy(year -> year, Collectors.summingInt(year ->1)));
+            .collect(Collectors.groupingBy(year -> year, TreeMap::new, Collectors.summingInt(year -> 1)));
     }
 
     public Double avergeMagnutude(String city) {
