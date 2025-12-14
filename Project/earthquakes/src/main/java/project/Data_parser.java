@@ -23,19 +23,8 @@ public class Data_parser {
         }
     }
 
-    public List<String[]> readAllData() throws Exception {
-        try (CSVReader csvReader = createCSVReader()) {
-            return csvReader.readAll();
-        } catch (IOException | CsvException e) {
-            throw new Exception("Error reading CSV file", e);
-        }
+    public List<String[]> readAllData() throws IOException, CsvException {
+        CSVReader csvReader = createCSVReader();
+        return csvReader.readAll();
     }
-
-//     public static void main(String[] args) throws IOException, CsvException {
-//         Data_parser dp = new Data_parser();
-
-//         List<String[]> allData = dp.readAllData();
-
-//         System.out.println(allData.get(1)[0]);
-//     };
 }
