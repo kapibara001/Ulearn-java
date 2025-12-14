@@ -1,7 +1,7 @@
 package project;
 
 import java.io.IOException;
-import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
+// import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;

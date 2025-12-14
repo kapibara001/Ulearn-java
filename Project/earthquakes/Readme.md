@@ -1,9 +1,6 @@
 # **Проект по JAVA**
 ## *Вариант 5*
 
-[![CI](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPO/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/YOUR_USERNAME/YOUR_REPO/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_USERNAME/YOUR_REPO)
-
 ### Основные классы:
 - Data_parser - получение информации из CSV файла и возвращение с типом `List<String[]>`.
 - Schedule - класс для работы с данными(графики, вывод данных в консоль).
@@ -14,8 +11,19 @@
 - openCSV - для получения данных из CSV-файла.
 - JFreeChart - нужен для рисования графиков по данным из CSV-фалйа.
 - JUnit и Mockito - нуобходимы для покрытия кода тестами.
+- Jacoco - генерация отчета по покрытию тестами.
 
 ---
 
 ### Полезные команды:
-- 
+- `mvn test` - запуск тестов.
+- `mvn clean test` - чистый (очистка перед запуском) запуск тестов.
+- `mvn verify` - полная верификация (с покрытием). Запускает полный цикл - тесты, компиляция и генерация отчетов по покрытию (Jacoco) и собрку *JAR*.
+
+---
+
+### Заметки
+1) Файл dependency-reduced-pom.xml генерируется автоматически плагоном Maven Share Plugin (сборка fat-JAR). Вручную изменить нельзя - содержит улучшенный код из pom.xml.
+2) Результаты тестов хранятся в файле `taget/site/index.html`.
+3) В yml файлах хранятся конфигурации GitHub Actions - инструкции, которые должен делать GitHub автоматически. Эти файлоы читаются при дейтвиях с GitHub'ом - `Push`, `request_pull` в ветку `main` и все остальное, на что настроены данные файлы конфигурации.
+4) В ходе создания проекта была совершена интеграция `CD(Continuous Delivery or Development)/CI(Continuous Integration)` - непрерывная интеграция и непрерывное равзертывание, и автотестов (yml-файлы).

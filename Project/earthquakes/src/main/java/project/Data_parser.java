@@ -21,7 +21,11 @@ public class Data_parser {
 
     public List<String[]> readAllData() throws IOException, CsvException {
         try (CSVReader csvReader = createCSVReader()) {
-            return csvReader.readAll();
+            List<String[]> data = csvReader.readAll();
+
+            
+
+            return data;
         }
     }
 }
