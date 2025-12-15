@@ -1,4 +1,4 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-earthquakes,project,Main,16,0,0,0,6,0,2,0,2,0
-earthquakes,project,Schedule,88,166,3,7,28,30,8,15,5,13
-earthquakes,project,Data_parser,0,30,0,0,0,6,0,3,0,3
+earthquakes,project.parser,Data_parser,0,30,0,0,0,7,0,3,0,3
+earthquakes,project.view_data,Schedule,205,166,9,7,57,30,15,15,9,13
+earthquakes,project,Main,10,0,0,0,4,0,2,0,2,0

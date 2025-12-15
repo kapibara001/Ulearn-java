@@ -1,4 +1,4 @@
-package project;
+package project.parser;
 
 import java.io.FileReader;
 import java.io.IOException;

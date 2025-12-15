@@ -1,4 +1,4 @@
-package project;
+package project.view_data;
 
 import java.io.IOException;
 // import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
@@ -10,6 +10,9 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -21,10 +24,12 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import com.opencsv.exceptions.CsvException;
 
+import project.parser.Data_parser;
+
 public class Schedule {
     private Data_parser dp = new Data_parser();
     private List<String[]> data;
-
+    
     public Schedule() {
         try {
             this.data = dp.readAllData();
@@ -33,17 +38,55 @@ public class Schedule {
         }
     }
 
-    // ID,Глубина в метрах,Тип магнитуды,Магнитуда,Штат,Время
-    //  0,               1,            2,        3,   4,    5
+    public void createMainGUI() {
+        JFrame frame = new JFrame("Earthquake Data");
+        JPanel panel = new JPanel();
     
-    // надо среднее количество землетрясений по годам
-    public void create_all_schedule() {
+        JButton btnAll = new JButton("Show Earthquakes Chart");
+        btnAll.addActionListener(e -> create_schedule());
+    
+        JButton btnCity = new JButton("Average Magnitude for state");
+        btnCity.addActionListener(e -> {
+            String city = JOptionPane.showInputDialog(frame, "State name:");
+            if (city != null && !city.trim().isEmpty()) {
+                double avg = avergeMagnutude(city);
+                JOptionPane.showMessageDialog(frame, "Average magnitude for " + city + ": " + avg);
+            }
+        });
+    
+        JButton btnDeepest = new JButton("Deepest Earthquake State for Year");
+        btnDeepest.addActionListener(e -> {
+            String yearStr = JOptionPane.showInputDialog(frame, "Enter year:");
+            if (yearStr != null) {
+                try {
+                    int year = Integer.parseInt(yearStr.trim());
+                    String state = theDeepestEarthquake(year);
+                    JOptionPane.showMessageDialog(frame, "State with deepest earthquake in " + year + ": " + state);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Invalid year format. Please enter a number.");
+                }
+            }
+        });
+    
+        panel.add(btnCity);
+        panel.add(btnDeepest);
+        panel.add(btnAll);
+    
+        frame.add(panel);
+        frame.setSize(500, 150);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+    
+    // среднее количество землетрясений по годам
+    public void create_schedule() {
         SortedMap<Integer, Integer> earthquakesPerYear = getEarthquakesPerYear();
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
+        
         // Брать данные из БД
-
+        
         earthquakesPerYear.forEach((year, count) -> {
             dataset.addValue(count, "Count earthquakes per year", year);
         });
@@ -70,7 +113,7 @@ public class Schedule {
         frame.setVisible(true);
     }
     
-    // Вывести в консоль среднюю магнитуду для города city (West Virginia)
+    // Вывести в консоль среднюю магнитуду для города city 
     public void create_schedule_city(String city) {
         System.out.println(avergeMagnutude(city));
     }
@@ -79,7 +122,7 @@ public class Schedule {
     public void create_schedule_deepest(int year) {
         System.out.println(theDeepestEarthquake(year));
     }
-    
+
 
     public SortedMap<Integer, Integer> getEarthquakesPerYear() {
         return data.stream()

@@ -5,6 +5,8 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import com.opencsv.exceptions.CsvException;
 
+import project.parser.Data_parser;
+
 public class DataParserTest {
 
     @Test

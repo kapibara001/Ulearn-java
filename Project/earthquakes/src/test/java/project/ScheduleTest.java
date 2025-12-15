@@ -7,6 +7,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.view_data.Schedule;
+
 public class ScheduleTest {
 
     private Schedule schedule;
