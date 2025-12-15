@@ -23,8 +23,6 @@ public class Data_parser {
         try (CSVReader csvReader = createCSVReader()) {
             List<String[]> data = csvReader.readAll();
 
-            
-
             return data;
         }
     }

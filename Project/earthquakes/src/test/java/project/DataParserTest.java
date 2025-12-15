@@ -10,7 +10,7 @@ public class DataParserTest {
     @Test
     void testConstructor() {
         Data_parser dp = new Data_parser();
-        // Path is set to absolute path of "Землетрясения.csv"
+
         assertNotNull(dp);
     }
 
@@ -18,9 +18,10 @@ public class DataParserTest {
     void testReadAllData() throws IOException, CsvException {
         Data_parser dp = new Data_parser();
         var data = dp.readAllData();
+        
         assertNotNull(data);
         assertTrue(data.size() > 0);
-        // First row is header
+
         assertEquals("ID", data.get(0)[0]);
     }
 }

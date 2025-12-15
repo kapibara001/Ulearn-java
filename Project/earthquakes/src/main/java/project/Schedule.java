@@ -42,6 +42,8 @@ public class Schedule {
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
+        // Брать данные из БД
+
         earthquakesPerYear.forEach((year, count) -> {
             dataset.addValue(count, "Count earthquakes per year", year);
         });
