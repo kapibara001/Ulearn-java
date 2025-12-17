@@ -1,7 +1,6 @@
 package project.parser;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -20,7 +19,7 @@ public class Create_parse_data {
 
     public Create_parse_data() {}
 
-    public void checkDateBase(Path path) throws SQLException, CsvValidationException, IOException {
+    public void checkDateBase(String path) throws SQLException, CsvValidationException, IOException {
         try (Connection conn = DriverManager.getConnection(URL)) {
             // Создание таблиц, если их нет
             cd.createTables(conn);
