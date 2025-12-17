@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Create_parse_data.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">earthquakes</a> &gt; <a href="index.source.html" class="el_package">project.parser</a> &gt; <span class="el_source">Create_parse_data.java</span></div><h1>Create_parse_data.java</h1><pre class="source lang-java linenums">package project.parser;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.opencsv.exceptions.CsvValidationException;
+
+import project.database.Create_database;
+import project.database.Data_filling;
+
+
+public class Create_parse_data {
+    private static final String URL = &quot;jdbc:sqlite:earthquakes.db&quot;;
+    private Create_database cd;
+
+<span class="nc" id="L21">    public Create_parse_data() {}</span>
+
+    public void checkDateBase(Path path) throws SQLException, CsvValidationException, IOException {
+<span class="nc" id="L24">        try (Connection conn = DriverManager.getConnection(URL)) {</span>
+            // Создание таблиц, если их нет
+<span class="nc" id="L26">            cd.createTables(conn);</span>
+<span class="nc" id="L27">            System.out.println(&quot;Таблицы созданы, если их не было.&quot;);</span>
+
+            // Проверка, заполнены ли таблицы
+<span class="nc" id="L30">            String sql = &quot;&quot;&quot;</span>
+                SELECT id_earthquake FROM earthquake LIMIT 1
+                        &quot;&quot;&quot;;
+<span class="nc" id="L33">            Statement stmt = conn.createStatement();</span>
+<span class="nc" id="L34">            ResultSet rs = stmt.executeQuery(sql);</span>
+
+<span class="nc bnc" id="L36" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L37">                System.out.println(&quot;Таблицы уже заполнены. Вставка данных не выполнена.&quot;);</span>
+<span class="nc" id="L38">                return;</span>
+            }
+            
+<span class="nc" id="L41">            Data_filling df = new Data_filling(&quot;Землетрясения.csv&quot;);</span>
+<span class="nc" id="L42">            df.fillingTablesDB(conn);</span>
+<span class="nc" id="L43">            System.out.println(&quot;Данные вставлены в таблицы.&quot;);</span>
+        }
+<span class="nc" id="L45">    } </span>
+} 
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

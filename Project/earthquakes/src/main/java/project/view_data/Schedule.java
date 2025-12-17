@@ -1,13 +1,13 @@
 package project.view_data;
 
-import java.io.IOException;
-// import java.util.Arrays; // Еслм захочу увидеть массивы не в виде хэшей памяти
-import java.util.Comparator;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Locale;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -22,18 +22,13 @@ import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import com.opencsv.exceptions.CsvException;
-
-import project.parser.Data_parser;
-
 public class Schedule {
-    private Data_parser dp = new Data_parser();
-    private List<String[]> data;
+    private Connection conn;
     
     public Schedule() {
         try {
-            this.data = dp.readAllData();
-        } catch (IOException | CsvException e) {
+            this.conn = DriverManager.getConnection("jdbc:sqlite:earthquakes.db");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -113,58 +108,46 @@ public class Schedule {
         frame.setVisible(true);
     }
     
-    // Вывести в консоль среднюю магнитуду для города city 
-    public void create_schedule_city(String city) {
-        System.out.println(avergeMagnutude(city));
-    }
-    
-    // Вывести название штата, в котором произошло самое глубокое землетрясение за year год
-    public void create_schedule_deepest(int year) {
-        System.out.println(theDeepestEarthquake(year));
-    }
-
 
     public SortedMap<Integer, Integer> getEarthquakesPerYear() {
-        return data.stream()
-            .skip(1)
-            .map(row -> row[5])
-            .map(dateStr -> Integer.parseInt(dateStr.substring(0, 4)))
-            .collect(Collectors.groupingBy(year -> year, TreeMap::new, Collectors.summingInt(year -> 1)));
+        SortedMap<Integer, Integer> map = new TreeMap<>();
+        try (PreparedStatement ps = conn.prepareStatement("SELECT strftime('%Y', time) as year, COUNT(*) as count FROM earthquake GROUP BY year ORDER BY year");
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                int year = rs.getInt("year");
+                int count = rs.getInt("count");
+                map.put(year, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return map;
     }
 
     public Double avergeMagnutude(String city) {
-        List<Double> magnitudes = data.stream()
-        .filter(row -> row[3] != null && row[4] != null)
-        .filter(row -> row[4].toLowerCase().contains(city.toLowerCase()))
-        .map(row -> {
-            return Double.parseDouble(row[3]);
-        })
-        .collect(Collectors.toList());
-
-        double sumMgn = 0;
-        for (int i = 0; i < magnitudes.size(); i++) {
-            sumMgn += magnitudes.get(i);
+        try (PreparedStatement ps = conn.prepareStatement("SELECT AVG(magnitude) as avg FROM earthquake e JOIN state s ON e.state_id = s.state_id WHERE LOWER(s.state_name) LIKE LOWER(?)")) {
+            ps.setString(1, "%" + city + "%");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                double avg = rs.getDouble("avg");
+                return Double.parseDouble(String.format(Locale.US, "%.2f", avg));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        if (sumMgn == 0) {
-            return 0.0;
-        }
-
-        double avergeMgnPerCity = sumMgn / magnitudes.size();
-        String formatted = String.format(Locale.US, "%.2f", avergeMgnPerCity);
-
-        return Double.parseDouble(formatted);
+        return 0.0;
     }
 
     public String theDeepestEarthquake(int year) {
-        String stateEarthquakest = data.stream()
-            .skip(1)
-            .filter(row -> Integer.parseInt(row[5].substring(0, 4)) == year)
-            .max(Comparator.comparingInt(row -> Integer.parseInt(row[1])))
-            .map(row -> row[4].toLowerCase())
-            .orElse("Нет данных за " + year + " год");
-
-        return stateEarthquakest;
+        try (PreparedStatement ps = conn.prepareStatement("SELECT s.state_name FROM earthquake e JOIN state s ON e.state_id = s.state_id WHERE strftime('%Y', e.time) = ? ORDER BY e.noun DESC LIMIT 1")) {
+            ps.setInt(1, year);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getString("state_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "Нет данных за " + year + " год";
     }
-
 }
