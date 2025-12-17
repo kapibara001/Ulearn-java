@@ -1,6 +1,7 @@
 package project.parser;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -15,14 +16,13 @@ import project.database.Data_filling;
 
 public class Create_parse_data {
     private static final String URL = "jdbc:sqlite:earthquakes.db";
-    private Create_database cd;
 
     public Create_parse_data() {}
 
-    public void checkDateBase(String path) throws SQLException, CsvValidationException, IOException {
+    public void checkDateBase(Path path) throws SQLException, CsvValidationException, IOException {
         try (Connection conn = DriverManager.getConnection(URL)) {
             // Создание таблиц, если их нет
-            cd.createTables(conn);
+            Create_database.createTables(conn);
             System.out.println("Таблицы созданы, если их не было.");
 
             // Проверка, заполнены ли таблицы

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Create_database {
-    public void createTables(Connection conn) throws SQLException {
+    public static void createTables(Connection conn) throws SQLException {
         String createState ="""
             CREATE TABLE IF NOT EXISTS state (
                 state_id SMALLINT PRIMARY KEY,

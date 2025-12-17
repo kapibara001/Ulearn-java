@@ -11,7 +11,7 @@ import project.view_data.Schedule;
 
 public class Main {
     public static void main(String[] args) throws CsvValidationException, SQLException, IOException {
-        String path = Path.of("Землетрясения.csv").toAbsolutePath().toString();
+        Path path = Path.of("Землетрясения.csv").toAbsolutePath();
         Create_parse_data cpd = new Create_parse_data();
         cpd.checkDateBase(path);
         

@@ -1,2 +1,8 @@
+project\database\model\Earthquake.class
+project\database\model\State.class
+project\database\Data_filling.class
+project\database\model\Magnitude.class
 project\Main.class
+project\parser\Create_parse_data.class
 project\view_data\Schedule.class
+project\database\Create_database.class
