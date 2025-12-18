@@ -80,8 +80,6 @@ public class Schedule {
         
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-        // Брать данные из БД
-        
         earthquakesPerYear.forEach((year, count) -> {
             dataset.addValue(count, "Count earthquakes per year", year);
         });
@@ -111,8 +109,17 @@ public class Schedule {
 
     public SortedMap<Integer, Integer> getEarthquakesPerYear() {
         SortedMap<Integer, Integer> map = new TreeMap<>();
-        try (PreparedStatement ps = conn.prepareStatement("SELECT strftime('%Y', time) as year, COUNT(*) as count FROM earthquake GROUP BY year ORDER BY year");
-             ResultSet rs = ps.executeQuery()) {
+        try (PreparedStatement ps = conn.prepareStatement(
+            """
+            SELECT 
+                strftime('%Y', time) as year, 
+                COUNT(*) as count 
+            FROM earthquake 
+            GROUP BY year 
+            ORDER BY year
+            """
+        );
+            ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 int year = rs.getInt("year");
                 int count = rs.getInt("count");
@@ -139,8 +146,18 @@ public class Schedule {
     }
 
     public String theDeepestEarthquake(int year) {
-        try (PreparedStatement ps = conn.prepareStatement("SELECT s.state_name FROM earthquake e JOIN state s ON e.state_id = s.state_id WHERE strftime('%Y', e.time) = ? ORDER BY e.noun DESC LIMIT 1")) {
-            ps.setInt(1, year);
+        try (PreparedStatement ps = conn.prepareStatement("""
+            SELECT s.state_name 
+            FROM earthquake e 
+            JOIN state s ON e.state_id = s.state_id 
+            WHERE e.noun = 
+                (SELECT MAX(e2.noun) 
+                 FROM earthquake e2 
+                 WHERE strftime('%Y', e2.time) = ?
+                )
+            ORDER BY e.noun DESC LIMIT 1
+            """)) {
+            ps.setString(1, String.valueOf(year));
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getString("state_name");

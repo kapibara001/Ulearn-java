@@ -1,0 +1,4 @@
+project\database\Create_databaseTest.class
+project\database\Data_fillingTest.class
+project\view_data\ScheduleTest.class
+project\parser\Create_parse_dataTest.class

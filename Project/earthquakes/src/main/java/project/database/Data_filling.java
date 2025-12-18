@@ -55,7 +55,7 @@ public class Data_filling {
 
                 int noun_metres = Integer.parseInt(noun);
                 float magnitude = Float.parseFloat(magnitude_level);
-                Timestamp time = Timestamp.valueOf(timeStr.replace("T", " ").replace("Z", ""));
+                String time = timeStr.substring(0, 10);
 
                 Short stateID = states.get(stateName);
                 if (stateID == null) {
@@ -80,7 +80,7 @@ public class Data_filling {
                 psEq.setShort(3, magTypeID);
                 psEq.setFloat(4, magnitude);
                 psEq.setShort(5, stateID);
-                psEq.setTimestamp(6, time);
+                psEq.setString(6, time);
                 psEq.executeUpdate();
             }
         }

@@ -27,7 +27,7 @@ public class Create_database {
                 magnitude_type_id SMALLINT NOT NULL,
                 magnitude REAL NOT NULL,
                 state_id SMALLINT NOT NULL,
-                time TIMESTAMP NOT NULL,
+                time VARCHAR(10) NOT NULL,
                 CONSTRAINT FK_earth_magn 
                     FOREIGN KEY (magnitude_type_id) 
                     REFERENCES magnitude(magnitude_type_id),

@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+earthquakes,project.parser,Create_parse_data,12,31,2,2,4,11,2,2,0,2
+earthquakes,project.view_data,Schedule,300,8,16,0,83,4,17,1,9,1
+earthquakes,project.database,Data_filling,0,177,2,4,0,48,2,3,0,2
+earthquakes,project.database,Create_database,3,22,0,0,1,8,1,1,1,1
+earthquakes,project,Main,23,0,0,0,7,0,2,0,2,0
+earthquakes,project.database.model,Magnitude,9,0,0,0,4,0,1,0,1,0
+earthquakes,project.database.model,Earthquake,21,0,0,0,8,0,1,0,1,0
+earthquakes,project.database.model,State,9,0,0,0,4,0,1,0,1,0
