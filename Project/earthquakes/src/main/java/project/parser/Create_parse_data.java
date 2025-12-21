@@ -25,7 +25,7 @@ public class Create_parse_data {
             Create_database.createTables(conn);
             System.out.println("Таблицы созданы, если их не было.");
 
-            // Проверка, заполнены ли таблицы
+            // Проверка, заполнены ли таблицы. Заполнение в случае, если таблицы пустуют
             String sql = """
                 SELECT id_earthquake FROM earthquake LIMIT 1
                         """;

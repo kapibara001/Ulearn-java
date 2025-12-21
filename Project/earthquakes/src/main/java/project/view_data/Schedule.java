@@ -36,9 +36,7 @@ public class Schedule {
     public void createMainGUI() {
         JFrame frame = new JFrame("Earthquake Data");
         JPanel panel = new JPanel();
-    
-        JButton btnAll = new JButton("Show Earthquakes Chart");
-        btnAll.addActionListener(e -> create_schedule());
+
     
         JButton btnCity = new JButton("Average Magnitude for state");
         btnCity.addActionListener(e -> {
@@ -51,7 +49,7 @@ public class Schedule {
     
         JButton btnDeepest = new JButton("Deepest Earthquake State for Year");
         btnDeepest.addActionListener(e -> {
-            String yearStr = JOptionPane.showInputDialog(frame, "Enter year:");
+            String yearStr = JOptionPane.showInputDialog(frame, "Enter year:"); // Ввод года
             if (yearStr != null) {
                 try {
                     int year = Integer.parseInt(yearStr.trim());
@@ -62,6 +60,9 @@ public class Schedule {
                 }
             }
         });
+
+        JButton btnAll = new JButton("Show Earthquakes Chart");
+        btnAll.addActionListener(e -> create_schedule());
     
         panel.add(btnCity);
         panel.add(btnDeepest);
