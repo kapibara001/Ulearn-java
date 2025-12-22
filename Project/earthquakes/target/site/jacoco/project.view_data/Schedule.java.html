@@ -36,22 +36,22 @@ public class Schedule {
     public void createMainGUI() {
 <span class="nc" id="L37">        JFrame frame = new JFrame(&quot;Earthquake Data&quot;);</span>
 <span class="nc" id="L38">        JPanel panel = new JPanel();</span>
+
     
-<span class="nc" id="L40">        JButton btnAll = new JButton(&quot;Show Earthquakes Chart&quot;);</span>
-<span class="nc" id="L41">        btnAll.addActionListener(e -&gt; create_schedule());</span>
-    
-<span class="nc" id="L43">        JButton btnCity = new JButton(&quot;Average Magnitude for state&quot;);</span>
-<span class="nc" id="L44">        btnCity.addActionListener(e -&gt; {</span>
-<span class="nc" id="L45">            String city = JOptionPane.showInputDialog(frame, &quot;State name:&quot;);</span>
-<span class="nc bnc" id="L46" title="All 4 branches missed.">            if (city != null &amp;&amp; !city.trim().isEmpty()) {</span>
-<span class="nc" id="L47">                double avg = avergeMagnutude(city);</span>
-<span class="nc" id="L48">                JOptionPane.showMessageDialog(frame, &quot;Average magnitude for &quot; + city + &quot;: &quot; + avg);</span>
+<span class="nc" id="L41">        JButton btnCity = new JButton(&quot;Average Magnitude for state&quot;);</span>
+<span class="nc" id="L42">        btnCity.addActionListener(e -&gt; {</span>
+            // String city = JOptionPane.showInputDialog(frame, &quot;State name:&quot;);
+<span class="nc" id="L44">            String city = &quot;West Virginia&quot;;</span>
+<span class="nc bnc" id="L45" title="All 4 branches missed.">            if (city != null &amp;&amp; !city.trim().isEmpty()) {</span>
+<span class="nc" id="L46">                double avg = avergeMagnutude(city);</span>
+<span class="nc" id="L47">                JOptionPane.showMessageDialog(frame, &quot;Average magnitude for &quot; + city + &quot;: &quot; + avg);</span>
             }
-<span class="nc" id="L50">        });</span>
+<span class="nc" id="L49">        });</span>
     
-<span class="nc" id="L52">        JButton btnDeepest = new JButton(&quot;Deepest Earthquake State for Year&quot;);</span>
-<span class="nc" id="L53">        btnDeepest.addActionListener(e -&gt; {</span>
-<span class="nc" id="L54">            String yearStr = JOptionPane.showInputDialog(frame, &quot;Enter year:&quot;);</span>
+<span class="nc" id="L51">        JButton btnDeepest = new JButton(&quot;Deepest Earthquake State for Year&quot;);</span>
+<span class="nc" id="L52">        btnDeepest.addActionListener(e -&gt; {</span>
+            // String yearStr = JOptionPane.showInputDialog(frame, &quot;Enter year:&quot;); // Ввод года
+<span class="nc" id="L54">            String yearStr = &quot;2013&quot;;</span>
 <span class="nc bnc" id="L55" title="All 2 branches missed.">            if (yearStr != null) {</span>
                 try {
 <span class="nc" id="L57">                    int year = Integer.parseInt(yearStr.trim());</span>
@@ -62,54 +62,57 @@ public class Schedule {
 <span class="nc" id="L62">                }</span>
             }
 <span class="nc" id="L64">        });</span>
+
+<span class="nc" id="L66">        JButton btnAll = new JButton(&quot;Show Earthquakes Chart&quot;);</span>
+<span class="nc" id="L67">        btnAll.addActionListener(e -&gt; create_schedule());</span>
     
-<span class="nc" id="L66">        panel.add(btnCity);</span>
-<span class="nc" id="L67">        panel.add(btnDeepest);</span>
-<span class="nc" id="L68">        panel.add(btnAll);</span>
+<span class="nc" id="L69">        panel.add(btnCity);</span>
+<span class="nc" id="L70">        panel.add(btnDeepest);</span>
+<span class="nc" id="L71">        panel.add(btnAll);</span>
     
-<span class="nc" id="L70">        frame.add(panel);</span>
-<span class="nc" id="L71">        frame.setSize(500, 150);</span>
-<span class="nc" id="L72">        frame.setLocationRelativeTo(null);</span>
-<span class="nc" id="L73">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
-<span class="nc" id="L74">        frame.setVisible(true);</span>
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L73">        frame.add(panel);</span>
+<span class="nc" id="L74">        frame.setSize(500, 150);</span>
+<span class="nc" id="L75">        frame.setLocationRelativeTo(null);</span>
+<span class="nc" id="L76">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L77">        frame.setVisible(true);</span>
+<span class="nc" id="L78">    }</span>
     
     // среднее количество землетрясений по годам
     public void create_schedule() {
-<span class="nc" id="L79">        SortedMap&lt;Integer, Integer&gt; earthquakesPerYear = getEarthquakesPerYear();</span>
+<span class="nc" id="L82">        SortedMap&lt;Integer, Integer&gt; earthquakesPerYear = getEarthquakesPerYear();</span>
         
-<span class="nc" id="L81">        DefaultCategoryDataset dataset = new DefaultCategoryDataset();</span>
+<span class="nc" id="L84">        DefaultCategoryDataset dataset = new DefaultCategoryDataset();</span>
         
-<span class="nc" id="L83">        earthquakesPerYear.forEach((year, count) -&gt; {</span>
-<span class="nc" id="L84">            dataset.addValue(count, &quot;Count earthquakes per year&quot;, year);</span>
-<span class="nc" id="L85">        });</span>
+<span class="nc" id="L86">        earthquakesPerYear.forEach((year, count) -&gt; {</span>
+<span class="nc" id="L87">            dataset.addValue(count, &quot;Count earthquakes per year&quot;, year);</span>
+<span class="nc" id="L88">        });</span>
 
-<span class="nc" id="L87">        JFreeChart chart = ChartFactory.createBarChart(&quot;Earthquakes&quot;,</span>
+<span class="nc" id="L90">        JFreeChart chart = ChartFactory.createBarChart(&quot;Earthquakes&quot;,</span>
             &quot;year&quot;, 
             &quot;Count earthquakes&quot;, 
             dataset);
 
-<span class="nc" id="L92">        CategoryPlot plot = chart.getCategoryPlot();</span>
-<span class="nc" id="L93">        CategoryAxis domainAxis = plot.getDomainAxis();</span>
-<span class="nc" id="L94">        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Поворот 45 градусов</span>
+<span class="nc" id="L95">        CategoryPlot plot = chart.getCategoryPlot();</span>
+<span class="nc" id="L96">        CategoryAxis domainAxis = plot.getDomainAxis();</span>
+<span class="nc" id="L97">        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Поворот 45 градусов</span>
 
         // отступы
-<span class="nc" id="L97">        domainAxis.setLowerMargin(0.02);</span>
-<span class="nc" id="L98">        domainAxis.setUpperMargin(0.02);</span>
+<span class="nc" id="L100">        domainAxis.setLowerMargin(0.02);</span>
+<span class="nc" id="L101">        domainAxis.setUpperMargin(0.02);</span>
 
-<span class="nc" id="L100">        ChartPanel chartPanel = new ChartPanel(chart);</span>
-<span class="nc" id="L101">        JFrame frame = new JFrame(); </span>
-<span class="nc" id="L102">        frame.setSize(800, 600);</span>
-<span class="nc" id="L103">        frame.setContentPane(chartPanel);</span>
-<span class="nc" id="L104">        frame.setLocationRelativeTo(null);</span>
-<span class="nc" id="L105">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
-<span class="nc" id="L106">        frame.setVisible(true);</span>
-<span class="nc" id="L107">    }</span>
+<span class="nc" id="L103">        ChartPanel chartPanel = new ChartPanel(chart);</span>
+<span class="nc" id="L104">        JFrame frame = new JFrame(); </span>
+<span class="nc" id="L105">        frame.setSize(800, 600);</span>
+<span class="nc" id="L106">        frame.setContentPane(chartPanel);</span>
+<span class="nc" id="L107">        frame.setLocationRelativeTo(null);</span>
+<span class="nc" id="L108">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L109">        frame.setVisible(true);</span>
+<span class="nc" id="L110">    }</span>
     
 
     public SortedMap&lt;Integer, Integer&gt; getEarthquakesPerYear() {
-<span class="nc" id="L111">        SortedMap&lt;Integer, Integer&gt; map = new TreeMap&lt;&gt;();</span>
-<span class="nc" id="L112">        try (PreparedStatement ps = conn.prepareStatement(</span>
+<span class="nc" id="L114">        SortedMap&lt;Integer, Integer&gt; map = new TreeMap&lt;&gt;();</span>
+<span class="nc" id="L115">        try (PreparedStatement ps = conn.prepareStatement(</span>
             &quot;&quot;&quot;
             SELECT 
                 strftime('%Y', time) as year, 
@@ -119,34 +122,34 @@ public class Schedule {
             ORDER BY year
             &quot;&quot;&quot;
         );
-<span class="nc" id="L122">            ResultSet rs = ps.executeQuery()) {</span>
-<span class="nc bnc" id="L123" title="All 2 branches missed.">            while (rs.next()) {</span>
-<span class="nc" id="L124">                int year = rs.getInt(&quot;year&quot;);</span>
-<span class="nc" id="L125">                int count = rs.getInt(&quot;count&quot;);</span>
-<span class="nc" id="L126">                map.put(year, count);</span>
-<span class="nc" id="L127">            }</span>
-<span class="nc" id="L128">        } catch (SQLException e) {</span>
-<span class="nc" id="L129">            e.printStackTrace();</span>
-<span class="nc" id="L130">        }</span>
-<span class="nc" id="L131">        return map;</span>
+<span class="nc" id="L125">            ResultSet rs = ps.executeQuery()) {</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L127">                int year = rs.getInt(&quot;year&quot;);</span>
+<span class="nc" id="L128">                int count = rs.getInt(&quot;count&quot;);</span>
+<span class="nc" id="L129">                map.put(year, count);</span>
+<span class="nc" id="L130">            }</span>
+<span class="nc" id="L131">        } catch (SQLException e) {</span>
+<span class="nc" id="L132">            e.printStackTrace();</span>
+<span class="nc" id="L133">        }</span>
+<span class="nc" id="L134">        return map;</span>
     }
 
     public Double avergeMagnutude(String city) {
-<span class="nc" id="L135">        try (PreparedStatement ps = conn.prepareStatement(&quot;SELECT AVG(magnitude) as avg FROM earthquake e JOIN state s ON e.state_id = s.state_id WHERE LOWER(s.state_name) LIKE LOWER(?)&quot;)) {</span>
-<span class="nc" id="L136">            ps.setString(1, &quot;%&quot; + city + &quot;%&quot;);</span>
-<span class="nc" id="L137">            ResultSet rs = ps.executeQuery();</span>
-<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L139">                double avg = rs.getDouble(&quot;avg&quot;);</span>
-<span class="nc" id="L140">                return Double.parseDouble(String.format(Locale.US, &quot;%.2f&quot;, avg));</span>
+<span class="nc" id="L138">        try (PreparedStatement ps = conn.prepareStatement(&quot;SELECT AVG(magnitude) as avg FROM earthquake e JOIN state s ON e.state_id = s.state_id WHERE LOWER(s.state_name) LIKE LOWER(?)&quot;)) {</span>
+<span class="nc" id="L139">            ps.setString(1, &quot;%&quot; + city + &quot;%&quot;);</span>
+<span class="nc" id="L140">            ResultSet rs = ps.executeQuery();</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L142">                double avg = rs.getDouble(&quot;avg&quot;);</span>
+<span class="nc" id="L143">                return Double.parseDouble(String.format(Locale.US, &quot;%.2f&quot;, avg));</span>
             }
-<span class="nc bnc" id="L142" title="All 2 branches missed.">        } catch (SQLException e) {</span>
-<span class="nc" id="L143">            e.printStackTrace();</span>
-<span class="nc" id="L144">        }</span>
-<span class="nc" id="L145">        return 0.0;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        } catch (SQLException e) {</span>
+<span class="nc" id="L146">            e.printStackTrace();</span>
+<span class="nc" id="L147">        }</span>
+<span class="nc" id="L148">        return 0.0;</span>
     }
 
     public String theDeepestEarthquake(int year) {
-<span class="nc" id="L149">        try (PreparedStatement ps = conn.prepareStatement(&quot;&quot;&quot;</span>
+<span class="nc" id="L152">        try (PreparedStatement ps = conn.prepareStatement(&quot;&quot;&quot;</span>
             SELECT s.state_name 
             FROM earthquake e 
             JOIN state s ON e.state_id = s.state_id 
@@ -157,15 +160,15 @@ public class Schedule {
                 )
             ORDER BY e.noun DESC LIMIT 1
             &quot;&quot;&quot;)) {
-<span class="nc" id="L160">            ps.setString(1, String.valueOf(year));</span>
-<span class="nc" id="L161">            ResultSet rs = ps.executeQuery();</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (rs.next()) {</span>
-<span class="nc" id="L163">                return rs.getString(&quot;state_name&quot;);</span>
+<span class="nc" id="L163">            ps.setString(1, String.valueOf(year));</span>
+<span class="nc" id="L164">            ResultSet rs = ps.executeQuery();</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (rs.next()) {</span>
+<span class="nc" id="L166">                return rs.getString(&quot;state_name&quot;);</span>
             }
-<span class="nc bnc" id="L165" title="All 2 branches missed.">        } catch (SQLException e) {</span>
-<span class="nc" id="L166">            e.printStackTrace();</span>
-<span class="nc" id="L167">        }</span>
-<span class="nc" id="L168">        return &quot;Нет данных за &quot; + year + &quot; год&quot;;</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">        } catch (SQLException e) {</span>
+<span class="nc" id="L169">            e.printStackTrace();</span>
+<span class="nc" id="L170">        }</span>
+<span class="nc" id="L171">        return &quot;Нет данных за &quot; + year + &quot; год&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
