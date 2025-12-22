@@ -40,7 +40,8 @@ public class Schedule {
     
         JButton btnCity = new JButton("Average Magnitude for state");
         btnCity.addActionListener(e -> {
-            String city = JOptionPane.showInputDialog(frame, "State name:");
+            // String city = JOptionPane.showInputDialog(frame, "State name:");
+            String city = "West Virginia";
             if (city != null && !city.trim().isEmpty()) {
                 double avg = avergeMagnutude(city);
                 JOptionPane.showMessageDialog(frame, "Average magnitude for " + city + ": " + avg);
@@ -49,7 +50,8 @@ public class Schedule {
     
         JButton btnDeepest = new JButton("Deepest Earthquake State for Year");
         btnDeepest.addActionListener(e -> {
-            String yearStr = JOptionPane.showInputDialog(frame, "Enter year:"); // Ввод года
+            // String yearStr = JOptionPane.showInputDialog(frame, "Enter year:"); // Ввод года
+            String yearStr = "2013";
             if (yearStr != null) {
                 try {
                     int year = Integer.parseInt(yearStr.trim());
