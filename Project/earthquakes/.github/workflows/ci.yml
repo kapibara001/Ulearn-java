@@ -2,7 +2,9 @@ name: CI
 
 on:
   push:
+    paths: ['Project/earthquakes/**']
   pull_request:
+    paths: ['Project/earthquakes/**']
   workflow_dispatch:
 
 jobs:
